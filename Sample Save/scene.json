@@ -1,0 +1,67 @@
+{
+    "Lights": [
+        {
+            "Colour": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "Intensity": 5.599999904632568,
+            "Name": "Light",
+            "Position": [
+                2.5,
+                3.5999999046325684,
+                2.5999999046325684
+            ]
+	}
+    ],
+    "Objects": [
+        {
+            "Archive": "Assets",
+            "File Path": "assets/Cube.glb",
+            "Gravity": false,
+            "Hitbox": [
+                {
+                    "Centre": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "HalfPos": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ],
+            "JumpPad": {
+                "Direction": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Enabled": false,
+                "Force": 0.0
+            },
+            "Mass": 0.0,
+            "Name": "Cube",
+            "Position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        }
+    ],
+    "Player": {
+        "Camera Position": [
+            0.0,
+            10.0,
+            0.0
+        ]
+    }
+}
