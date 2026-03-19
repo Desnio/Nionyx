@@ -1,0 +1,21 @@
+# .clang-format
+BasedOnStyle: LLVM        # Start with LLVM defaults
+IndentWidth: 4            # 4 spaces per indent
+TabWidth: 4
+UseTab: Never             # Always spaces, not tabs
+
+BreakBeforeBraces: Allman  # Opening braces on the next line
+AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+
+ColumnLimit: 120          # Wrap lines longer than 120 chars
+AlignAfterOpenBracket: Align  # Align multi-line function calls
+
+PointerAlignment: Left        # int* ptr style
+ReferenceAlignment: Left      # int& ref style
+DerivePointerAlignment: false
+
+SpacesBeforeTrailingComments: 2
+SpaceAfterCStyleCast: true
+

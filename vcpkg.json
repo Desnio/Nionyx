@@ -1,0 +1,12 @@
+{
+    "name": "nionyx",
+    "version": "0.1.0",
+    "dependencies": [
+        "glfw3",
+        "assimp",
+        "meshoptimizer",
+        "lz4",
+        "glm",
+	"tracy"
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "name": "nxpk",
+    "version": "0.1.0",
+    "dependencies": [
+        "lz4"
+    ]
+}
