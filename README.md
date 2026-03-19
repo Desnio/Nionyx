@@ -19,8 +19,32 @@ Nionyx is a lightweight 3D engine written in C++. It focuses on being able to lo
 
 Clone and build:
 
-```bash
+`bash
 git clone https://github.com/Desnio/Nionyx.git
 cd Nionyx
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
+`
+
+## Licences
+
+Every licence for the dependencies can be found in `third_party_licences/xxx/LICENCE`
+
+## Folders
+
+- `EngineAssets/` has all the required assets for the engine to function. The sphere is used to show where light objects are
+- `cfg` has the config files. The modes are `Game`, `Engine` and `Debug`
+  - `Game` is the final game that will run
+  - `Engine` is the full editor gui
+  - `Debug` is the same as `Game` but with more info about the player and objects
+- `custominclude` has all the engines `.hpp` files
+- `include` has external libraries' `.h/.hpp` files that vcpkg can't install
+- `shaders` has all the shaders
+- `src` source files
+- `third_party_licences` all the external libraries' licences
+
+## Running the game
+
+To run it in `Game` mode you must do some stuff beforehand to make it work
+- Compile NXPKPacker in `src/NXPK`
+- Run `./NXPKPacker shaders Shaders.nxpk`
