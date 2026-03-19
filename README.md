@@ -48,3 +48,6 @@ Every licence for the dependencies can be found in `third_party_licences/xxx/LIC
 To run it in `Game` mode you must do some stuff beforehand to make it work
 - Compile NXPKPacker in `src/NXPK`
 - Run `./NXPKPacker shaders Shaders.nxpk`
+- Run `./NXPKPacker saves Saves.nxpk`
+- Run `./NXPKPacker assets Assets.nxpk`
+  - Note that you can specify the archive name for the asset folder in each object in the save.json
