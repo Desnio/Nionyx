@@ -56,11 +56,38 @@ const char* mapFile(std::string archivePath)
 
 #endif
 
+struct archive
+{
+    const char* data;
+    std::string path;
+}
+
+std::vector<archive> archives;
+
+NXPKLOADER(std::vector<std::string> archivesPaths)
+{
+    int sizetemp = archivePath.size();
+    if(archivePath[sizetemp - 5] != '.')
+    {
+        archivePath += ".nxpk";
+    }
+
+    for(int i = 0; i < archivesPaths.size(); i++)
+    {
+        const char* data = mapFile(archivesPaths[i]);
+        archives.push_back(archive);
+        archives.back().data = data;
+        archives.back().path = archivesPaths[i];
+    }
+}
+
+
 /*
 This loads a single file from a .nxpk archive and returns the char vector
 The archive path is relative to the root folder and the file path is relative to the archive.
-E.g. if there is a file in Nionyx/pak/assets/cube.glb where pak.nxpk is the packed version of pak/ and is Nionyx/pak.nxpk. The file path will be assets/cube.glb and the archive path with be pak.nxpk
+E.g. if there is a file in Nionyx/assets/cube.glb where assets.nxpk is the packed version of assets/ and is Nionyx/assts.nxpk. The file path will be assets/cube.glb and the archive path with be asssts.nxpk
 */
+
 
 std::vector<char> NXPKLoader::LoadFromArchive(std::string archivePath, std::string filePath, std::string type)
 {
@@ -75,7 +102,19 @@ std::vector<char> NXPKLoader::LoadFromArchive(std::string archivePath, std::stri
         filePath += type;
     }
 
-    const char* archiveData = mapFile(archivePath);
+    bool cached = false;
+    for(int i = 0; i < archives.size(); i++)
+    {
+        if(archivePath == archives.path[i];
+        {
+            const char* archiveData = archives.data[i];
+            cached = true;
+        }
+    }
+    if(!cached)
+    {
+        const char* archiveData = mapFile(archivePath);
+    }
 
     // read header from the end
     const char* headerPtr = archiveData + size - 20;
