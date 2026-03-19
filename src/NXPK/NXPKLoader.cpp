@@ -64,24 +64,6 @@ struct archive
 
 std::vector<archive> archives;
 
-NXPKLOADER(std::vector<std::string> archivesPaths)
-{
-    int sizetemp = archivePath.size();
-    if(archivePath[sizetemp - 5] != '.')
-    {
-        archivePath += ".nxpk";
-    }
-
-    for(int i = 0; i < archivesPaths.size(); i++)
-    {
-        const char* data = mapFile(archivesPaths[i]);
-        archives.push_back(archive);
-        archives.back().data = data;
-        archives.back().path = archivesPaths[i];
-    }
-}
-
-
 /*
 This loads a single file from a .nxpk archive and returns the char vector
 The archive path is relative to the root folder and the file path is relative to the archive.
@@ -102,18 +84,21 @@ std::vector<char> NXPKLoader::LoadFromArchive(std::string archivePath, std::stri
         filePath += type;
     }
 
-    bool cached = false;
-    for(int i = 0; i < archives.size(); i++)
+    cached = false;
+    for(auto& archive : archives)
     {
-        if(archivePath == archives.path[i];
+        if(archivePath == archive.path;
         {
-            const char* archiveData = archives.data[i];
+            const char* archiveData = archive.data;
             cached = true;
         }
     }
     if(!cached)
     {
         const char* archiveData = mapFile(archivePath);
+        archives.push_back(archive);
+        archives.back().data = archiveData;
+        archives.back().path = archivePath;
     }
 
     // read header from the end
