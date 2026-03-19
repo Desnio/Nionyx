@@ -19,7 +19,7 @@ Nionyx is a lightweight 3D engine written in C++. It focuses on being able to lo
 
 Clone and build:
 
-`bash
+`
 git clone https://github.com/Desnio/Nionyx.git
 cd Nionyx
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
