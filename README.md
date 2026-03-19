@@ -1,24 +1,26 @@
-# This is a student game engine that I'm developing in my free time
+# It is in very early pre-alpha. I have barely gotten the simple functions like objects to work.
 
-## Functions for each folder
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![C++ Version](https://img.shields.io/badge/C%2B%2B-C%2B%2B20-blue)](https://isocpp.org/)
+[![OpenGL Version](https://img.shields.io/badge/OpenGL-3.3-orange)](https://www.opengl.org/)
 
-The EngineAssets folder contains all assets required by the engine to function, right now its only the sphere used for lighting placement.
+Nionyx is a lightweight 3D engine written in C++. It focuses on being able to load scenes without having any loading screens. 
 
-cfg.json has one function for now and that is what mode to run the game in. There are 3 modes.
-- "Engine" is the full editor interface.
-- "Debug" is the same as the normal game but gives a UI for debugging info.
-- "Game" is the final game
+---
+## Getting Started
 
-custominclude/ has all the engines .hpp files\
-include/ has all the external libraries' .h/.hpp files that vcpkg cant install
+### Prerequisites
 
-shaders/ has all the shaders in the engine
+- C++20 compatible compiler
+- CMake 3.20+
+- OpenGL 3.3 capable GPU
 
-src/ has the source files
+### Installation
 
-It uses some files from LearnOpenGL learnopengl.com
+Clone and build:
 
-## Installation
-
-I uses cmake and vcpkg to manage installation\
-vcpkg install most of the required dependencies but imgui needs to be compiled with stdlib added on and glad also needs to be added
+```bash
+git clone https://github.com/Desnio/Nionyx.git
+cd Nionyx
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
