@@ -1,7 +1,15 @@
 #include "NXPK.hpp"
 
-off_t size;
 namespace fs = std::filesystem;
+
+struct archive
+{
+    const char* data;
+    std::string path;
+    off_t size;
+}
+
+std::vector<archive> archives;
 
 #if defined(_WIN32)
 
@@ -14,7 +22,7 @@ const char* mapFile(std::string pathtemp)
 
     LARGE_INTEGER fileSize;
     GetFileSizeEx(file, &fileSize);
-    size = static_cast<size_t>(fileSize.QuadPart);
+    archives.back().size = static_cast<size_t>(fileSize.QuadPart);
 
     HANDLE mapping = CreateFileMappingA(file, NULL, PAGE_READONLY, 0, 0, NULL);
 
@@ -43,7 +51,7 @@ const char* mapFile(std::string archivePath)
         return {};
     }
 
-    size = lseek(fd, 0, SEEK_END);
+    archives.back().size = lseek(fd, 0, SEEK_END);
     const char* archiveData = (const char*) mmap(nullptr, size, PROT_READ, MAP_PRIVATE, fd, 0);
     if(archiveData == MAP_FAILED) {
         close(fd);
@@ -55,14 +63,6 @@ const char* mapFile(std::string archivePath)
 }
 
 #endif
-
-struct archive
-{
-    const char* data;
-    std::string path;
-}
-
-std::vector<archive> archives;
 
 /*
 This loads a single file from a .nxpk archive and returns the char vector
@@ -87,7 +87,7 @@ std::vector<char> NXPKLoader::LoadFromArchive(std::string archivePath, std::stri
     cached = false;
     for(auto& archive : archives)
     {
-        if(archivePath == archive.path;
+        if(archivePath == archive.path);
         {
             const char* archiveData = archive.data;
             cached = true;
@@ -95,8 +95,8 @@ std::vector<char> NXPKLoader::LoadFromArchive(std::string archivePath, std::stri
     }
     if(!cached)
     {
-        const char* archiveData = mapFile(archivePath);
         archives.push_back(archive);
+        const char* archiveData = mapFile(archivePath);
         archives.back().data = archiveData;
         archives.back().path = archivePath;
     }
