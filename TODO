@@ -3,3 +3,5 @@ Fully custom assets, not just compressed glTF
 Scripting - Lua or squirrel?
 
 munmap
+
+fix assimp loading
