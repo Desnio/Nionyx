@@ -2,8 +2,8 @@
 #include <functional>
 #include <thread>
 #include <mutex>
+#include <condition_variable>
 #include <atomic>
-#include <chrono>
 
 class Threading
 {
@@ -20,7 +20,12 @@ public:
 
     ~Threading()
     {
-        running = false;
+        {
+            std::lock_guard<std::mutex> lock(mtx);
+            running = false;
+        }
+
+        cv.notify_all(); // wake all threads so they can exit
 
         for (auto& t : workers)
         {
@@ -31,37 +36,45 @@ public:
 
     void Enque(std::function<void()> func)
     {
-        funcs.push_back(func);
+        {
+            std::lock_guard<std::mutex> lock(mtx);
+            funcs.push_back(func);
+        }
+
+        cv.notify_one(); // wake ONE worker thread
     }
 
 private:
     void Thread()
     {
-        while (running)
+        while (true)
         {
             std::function<void()> task;
 
             {
-                if (!funcs.empty())
+                std::unique_lock<std::mutex> lock(mtx);
+
+    
+                cv.wait(lock, [this]()
                 {
-                    task = funcs.back();
-                    funcs.pop_back();
-                }
+                    return !funcs.empty() || !running;
+                });
+
+                if (!running && funcs.empty())
+                    return;
+
+                task = funcs.back();
+                funcs.pop_back();
             }
 
-            if (task)
-            {
-                task();
-            }
-            else
-            {
-                std::this_thread::sleep_for(std::chrono::milliseconds(20));
-            }
+            task(); // run outside lock
         }
     }
 
     std::vector<std::thread> workers;
     std::vector<std::function<void()>> funcs;
 
-    std::atomic<bool> running{false};
+    std::mutex mtx;
+    std::condition_variable cv;
+    bool running = false;
 };
