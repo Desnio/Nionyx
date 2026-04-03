@@ -31,7 +31,6 @@ public:
 
     void Enque(std::function<void()> func)
     {
-        std::lock_guard<std::mutex> lock(mtx);
         funcs.push_back(func);
     }
 
@@ -43,8 +42,6 @@ private:
             std::function<void()> task;
 
             {
-                std::lock_guard<std::mutex> lock(mtx);
-
                 if (!funcs.empty())
                 {
                     task = funcs.back();
@@ -63,10 +60,8 @@ private:
         }
     }
 
-private:
     std::vector<std::thread> workers;
     std::vector<std::function<void()>> funcs;
 
-    std::mutex mtx;
     std::atomic<bool> running{false};
 };
