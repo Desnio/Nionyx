@@ -4,8 +4,6 @@
 [![C++ Version](https://img.shields.io/badge/C%2B%2B-C%2B%2B20-blue)](https://isocpp.org/)
 [![OpenGL Version](https://img.shields.io/badge/OpenGL-3.3-orange)](https://www.opengl.org/)
 
-Nionyx is a lightweight 3D engine written in C++. It focuses on being able to load scenes without having any loading screens. 
-
 ---
 ## Getting Started
 
