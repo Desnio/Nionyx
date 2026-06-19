@@ -18,10 +18,10 @@
 Clone and build:
 
 `
-git clone https://github.com/Desnio/Nionyx.git
-cd Nionyx
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build
+git clone https://github.com/Desnio/Nionyx.git  
+cd Nionyx  
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release  
+cmake --build build  
 `
 
 ## Licences
